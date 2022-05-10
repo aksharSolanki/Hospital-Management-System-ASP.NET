@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HospitalMS.Models.User>
+
+@{
+    ViewBag.Title = "Login Page";
+}
+<h2>Login</h2>
+
+<body>
+    @using (Html.BeginForm("Index", "Users", FormMethod.Post))
+    {
+        <fieldset>
+            <legend>Enter admin credentials</legend>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @if (@ViewBag.Message != null)
+            {
+                <div style="border: 1px solid red">
+                    @ViewBag.Message
+                </div>
+            }
+            <div >
+                <div>
+                    @Html.Label("username", "Username: ")
+                    @Html.TextBox("username", null, new { @type = "text", required = "required" })
+                    @Html.ValidationMessage("username")
+                </div>
+                <div>
+                    @Html.Label("password", "Password: ")
+                    @Html.TextBox("password", null, new { @type = "password", required = "required" })
+                    @Html.ValidationMessage("password")
+                </div>
+                <div>
+                    <input type="submit" value="Login" />
+                </div>
+            </div>
+        </fieldset>
+    }
+</body>
+
+
